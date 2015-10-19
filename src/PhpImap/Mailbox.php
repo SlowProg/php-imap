@@ -99,7 +99,7 @@ class Mailbox {
 	 */
 
 	public function createMailbox() {
-		return imap_createmailbox($this->getImapStream(), imap_utf7_encode($this->imapPath));
+		return imap_createmailbox($this->getImapStream(), Utf7::encode($this->imapPath));
 	}
 
 	/**
@@ -129,7 +129,7 @@ class Mailbox {
 		$folders = imap_list($this->getImapStream(), $this->imapPath, "*");
 		foreach ($folders as $key => $folder)
 		{
-			$folder = str_replace($this->imapPath, "", imap_utf7_decode($folder));
+			$folder = str_replace($this->imapPath, "", Utf7::decode($folder));
 			$folders[$key] = $folder;
 		}
 		return $folders;
